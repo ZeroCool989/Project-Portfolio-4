@@ -19,7 +19,7 @@ if os.path.isfile('env.py'):
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-TEMPLATES_DIR= os.path.join(BASE_DIR, 'templates')
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 
 # Quick-start development settings - unsuitable for production
@@ -33,7 +33,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '8000-zerocool989-project-port-9frflmt6uh.us2.codeanyapp.com',
-    'dailyfinancepulse.herokuapp.com', 'localhost'
+    'dailyfinancepulse.herokuapp.com', 'dailyfinancepulse-448aefaa433a.herokuapp.com',
+    'localhost'
 ]
 
 
@@ -133,11 +134,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_STORAGE ='cloudinary_storage.storage.StaticHashedCloudinaryStorage'
-STATICFILES_DIRS=[os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
+STATIC_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-MEDIA_URL='/media/'
+MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Default primary key field type
