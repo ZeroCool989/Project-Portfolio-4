@@ -1,5 +1,6 @@
 {% extends 'base.html' %} {% block title %} {{ article.title }} {% endblock %}
-{% block content %}
+{% block content %} {% load crispy_forms_tags %}
+
 <div class="masthead">
   <div class="container">
     <div class="row g-0">
@@ -80,7 +81,18 @@
 
     <div class="col-md-8 card mb-4 mt-3">
       <div class="card-body">
-        <!-- Additional content or features can go here. -->
+        {% if commented %}
+        <div class="alert alert-success" role="alert">
+          Your comment is awaiting approval.
+        </div>
+        {%else%} {% if user.is_authenticated %}
+        <h3>Leave a comment:</h3>
+        <p>Posting as: {{ user.username }}</p>
+        <form method="post" style="margin-top: 1.3em">
+          {% csrf_token %} {{ comment_form|crispy }}
+          <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+        </form>
+        {% endif %}
       </div>
     </div>
   </div>
