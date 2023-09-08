@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Home - News Blog {% endblock %}
+{% block content %}
+<section>
+    <h2>Latest Articles</h2>
+    <div class="row">
+        {% for post in post_list %}
+        <div class="col-md-4">
+            <div class="card">
+                <!-- Check if there's a placeholder image -->
+                {% if "placeholder" in post.featured_image.url %}
+                <img src="https://res.cloudinary.com/drqluthko/image/upload/v1694149146/Stack_of_Dollar_Cash_Bills_jovapd.jpg"
+                    class="card-img-top" alt="{{ post.title }}" />
+                <!-- If not, use the featured image from the post -->
+                {% else %}
+                <img src="{{ post.featured_image.url }}" class="card-img-top" alt="{{ post.title }}" />
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text">{{ post.excerpt }}</p>
+                    <p class="card-text">
+                        <!-- Display the author's username and publication date -->
+                        <small class="text-muted">
+                            Published by {{ post.author.username }} on {{ post.created_on }}
+                        </small>
+                    </p>
+                    <p class="card-text">
+                        <i class="far fa-heart"></i> {{ post.number_of_likes }}
+                    </p>
+                    <a href="#" class="btn btn-primary">Read More</a>
+                    <!-- Adjust this href to where you want it to point -->
+                </div>
+            </div>
+        </div>
+        {% if forloop.counter|divisibleby:3 and not forloop.last %}
+    </div>
+    <div class="row">{% endif %} {% endfor %}
+</section>
+
+{% if is_paginated %}
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        <!-- Display the previous page link if available -->
+        {% if page_obj.has_previous %}
+        <li>
+            <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV</a>
+        </li>
+        {% endif %}
+        <!-- Display the next page link if available -->
+        {% if page_obj.has_next %}
+        <li>
+            <a href="?page={{ page_obj.next_page_number }}" class="page-link">NEXT &raquo;</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+{% endblock %}
