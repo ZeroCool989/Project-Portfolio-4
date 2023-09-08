@@ -10,11 +10,15 @@
             <div class="card">
                 <!-- Check if there's a placeholder image -->
                 {% if "placeholder" in post.featured_image.url %}
-                <img src="https://res.cloudinary.com/drqluthko/image/upload/v1694149146/Stack_of_Dollar_Cash_Bills_jovapd.jpg"
-                    class="card-img-top" alt="{{ post.title }}" />
+                <a href="{% url 'post_detail' slug=post.slug %}">
+                    <img src="https://res.cloudinary.com/drqluthko/image/upload/v1694149146/Stack_of_Dollar_Cash_Bills_jovapd.jpg"
+                        class="card-img-top" alt="{{ post.title }}" />
+                </a>
                 <!-- If not, use the featured image from the post -->
                 {% else %}
-                <img src="{{ post.featured_image.url }}" class="card-img-top" alt="{{ post.title }}" />
+                <a href="{% url 'post_detail' slug=post.slug %}">
+                    <img src="{{ post.featured_image.url }}" class="card-img-top" alt="{{ post.title }}" />
+                </a>
                 {% endif %}
                 <div class="card-body">
                     <h5 class="card-title">{{ post.title }}</h5>
@@ -28,7 +32,7 @@
                     <p class="card-text">
                         <i class="far fa-heart"></i> {{ post.number_of_likes }}
                     </p>
-                    <a href="#" class="btn btn-primary">Read More</a>
+                    <a href="{% url 'post_detail' slug=post.slug %}" class="btn btn-primary">Read More</a>
                     <!-- Adjust this href to where you want it to point -->
                 </div>
             </div>
