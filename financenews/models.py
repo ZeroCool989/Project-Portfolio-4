@@ -25,6 +25,8 @@ class Post(models.Model):
     excerpt = models.TextField(blank=True)  # Short snippet/preview of the post
     # Timestamp for when the post was created
     created_on = models.DateTimeField(auto_now_add=True)
+    # Adding the status field to the Post model
+    status = models.IntegerField(choices=STATUS, default=0)
     # ManyToManyField to represent likes by users
     likes = models.ManyToManyField(User, related_name='blog_likes', blank=True)
 
